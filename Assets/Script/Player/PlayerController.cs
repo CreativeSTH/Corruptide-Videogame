@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
 
     //Variables 
     public float speed= 10f;
-    public float rangMove;
     public float shootForce=1000f;
     public float shootRate=0.5f;
+
     private float shootRateTime = 1f;
+    private float rangMove = 35.0f;
 
 
     //Variable InputActions
@@ -34,14 +35,14 @@ public class PlayerController : MonoBehaviour
 
     void onMOve(){
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        if(transform.position.x < -rangMove){
-            transform.position = new Vector3(-rangMove, transform.position.y, transform.position.z);
+        if(transform.position.y < -rangMove){
+            transform.position = new Vector3(transform.position.x , -rangMove, transform.position.z);
         }
-        else if(transform.position.x > rangMove){
-            transform.position = new Vector3(rangMove, transform.position.y, transform.position.z);
+        else if(transform.position.y > rangMove){
+            transform.position = new Vector3(transform.position.x, rangMove, transform.position.z);
         }
         
-        transform.Translate(Vector3.right * Time.deltaTime * speed * moveValue);
+        transform.Translate(Vector3.up * Time.deltaTime * speed * moveValue);
     }
 
     void OnShoot()
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
         if(shootValue){
             if (Time.time > shootRateTime)
             {
-            AudioManager.Instance.PlaySFX(audioShot);
+            //AudioManager.Instance.PlaySFX(audioShot);
             GameObject newMissile;
 
             newMissile = Instantiate(Missile, SpawnMissile.position, SpawnMissile.rotation );

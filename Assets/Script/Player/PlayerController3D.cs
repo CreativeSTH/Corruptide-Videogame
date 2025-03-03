@@ -1,0 +1,79 @@
+using UnityEngine;
+
+public class PlayerController3D : MonoBehaviour
+{
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f; // Speed for vertical movement
+
+    [Header("Shooting Settings")]
+    [SerializeField] private GameObject leftProjectilePrefab; // Prefab for left click
+    [SerializeField] private GameObject rightProjectilePrefab; // Prefab for right click
+    [SerializeField] private Transform firePoint; // Position where projectiles are instantiated
+
+    private float projectileSpeed = 100f; // Speed of the projectiles
+    private Camera mainCamera;
+    private Quaternion initialRotation;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+        initialRotation = transform.rotation; // Store the rotation set in the Scene
+    }
+
+    void Update()
+    {
+        Move();
+        RotateTowardsMouse();
+        HandleShooting();
+    }
+
+    private void Move()
+    {
+        float verticalInput = Input.GetAxis("Vertical");
+        transform.position += Vector3.up * verticalInput * moveSpeed * Time.deltaTime;
+    }
+
+    private void RotateTowardsMouse()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Plane xyPlane = new Plane(Vector3.forward, Vector3.zero);
+
+        if (xyPlane.Raycast(ray, out float distance))
+        {
+            Vector3 mousePosition = ray.GetPoint(distance);
+            Vector3 direction = mousePosition - transform.position;
+            direction.z = 0; // Keep rotation in the X-Y plane
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            angle = Mathf.Clamp(angle, -70f, 70f); // Ensure rotation stays within -90 to 90 degrees
+
+            transform.rotation = Quaternion.Euler(-angle, initialRotation.eulerAngles.y, initialRotation.eulerAngles.z);
+        }
+    }
+
+
+    private void HandleShooting()
+    {
+        if (Input.GetMouseButtonDown(0)) // Left Click
+        {
+            ShootProjectile(leftProjectilePrefab);
+        }
+        if (Input.GetMouseButtonDown(1)) // Right Click
+        {
+            ShootProjectile(rightProjectilePrefab);
+        }
+    }
+
+    private void ShootProjectile(GameObject projectilePrefab)
+    {
+        if (projectilePrefab != null && firePoint != null)
+        {
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, transform.rotation);
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.linearVelocity = transform.forward * projectileSpeed;
+            }
+        }
+    }
+}
