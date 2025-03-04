@@ -10,7 +10,8 @@ public class PlayerController3D : MonoBehaviour
     [SerializeField] private GameObject rightProjectilePrefab; // Prefab for right click
     [SerializeField] private Transform firePoint; // Position where projectiles are instantiated
 
-    private float projectileSpeed = 100f; // Speed of the projectiles
+    private float projectileSpeed = 100f;
+    private float missileSpeed = 60f;
     private Camera mainCamera;
     private Quaternion initialRotation;
 
@@ -31,6 +32,13 @@ public class PlayerController3D : MonoBehaviour
     {
         float verticalInput = Input.GetAxis("Vertical");
         transform.position += Vector3.up * verticalInput * moveSpeed * Time.deltaTime;
+        if (transform.position.y < -35)
+        {
+            transform.position = new Vector3(transform.position.x, -35, transform.position.z);
+        } else if (transform.position.y > 35)
+        {
+            transform.position = new Vector3(transform.position.x, 35, transform.position.z);
+        }
     }
 
     private void RotateTowardsMouse()
@@ -56,15 +64,15 @@ public class PlayerController3D : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Left Click
         {
-            ShootProjectile(leftProjectilePrefab);
+            ShootProjectile(leftProjectilePrefab, true);
         }
         if (Input.GetMouseButtonDown(1)) // Right Click
         {
-            ShootProjectile(rightProjectilePrefab);
+            ShootProjectile(rightProjectilePrefab, false);
         }
     }
 
-    private void ShootProjectile(GameObject projectilePrefab)
+    private void ShootProjectile(GameObject projectilePrefab, bool type)
     {
         if (projectilePrefab != null && firePoint != null)
         {
@@ -72,7 +80,10 @@ public class PlayerController3D : MonoBehaviour
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                if (type)
+                {
                 rb.linearVelocity = transform.forward * projectileSpeed;
+                } else rb.linearVelocity = transform.forward * missileSpeed;
             }
         }
     }
