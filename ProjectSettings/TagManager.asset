@@ -10,6 +10,8 @@ TagManager:
   - Fighter2
   - Bullet
   - Missile
+  - MissilePlayer
+  - BulletPlayer
   layers:
   - Default
   - TransparentFX

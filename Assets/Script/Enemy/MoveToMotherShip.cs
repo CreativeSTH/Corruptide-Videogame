@@ -13,6 +13,8 @@ public class MoveToMotherShip : MonoBehaviour
 
     void Update()
     {
+        if (PlayerHealth.health < 1) this.enabled = false;
+
         if (motherShip)
         {
             transform.position = Vector3.MoveTowards(transform.position, motherShip.position, moveSpeed * Time.deltaTime);

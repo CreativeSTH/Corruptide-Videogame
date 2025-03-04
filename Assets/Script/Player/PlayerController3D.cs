@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController3D : MonoBehaviour
 {
     [Header("Movement Settings")]
+    [Tooltip("The movement at which the space ship moves")]
     [SerializeField] private float moveSpeed = 5f; // Speed for vertical movement
 
     [Header("Shooting Settings")]
@@ -28,6 +29,9 @@ public class PlayerController3D : MonoBehaviour
         HandleShooting();
     }
 
+    /// <summary>
+    /// A method that runs every frame and controlls the movement of the player in the Y axis
+    /// </summary>
     private void Move()
     {
         float verticalInput = Input.GetAxis("Vertical");

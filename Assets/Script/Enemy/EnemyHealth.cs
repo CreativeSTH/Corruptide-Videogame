@@ -16,11 +16,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet")) // Ensure bullets have the "Bullet" tag
+        if (other.CompareTag("BulletPlayer")) // Ensure bullets have the "Bullet" tag
         {
             TakeDamage(1);
             Destroy(other.gameObject); // Destroy the bullet upon impact
-        } else if (other.CompareTag("Missile"))
+        } else if (other.CompareTag("MissilePlayer"))
         {
             TakeDamage(5);
             Destroy(other.gameObject);

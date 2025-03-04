@@ -21,6 +21,8 @@ public class MoveAndShootAtPlayer : MonoBehaviour
 
     void Update()
     {
+        if (PlayerHealth.health < 1) this.enabled = false;
+
         if (player)
         {
             if (transform.position.x < -35)
