@@ -1,47 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance {get; private set;}
-    [SerializeField] AudioSource sfxAudio, musicAudio;
-    public AudioClip initialMusic;
+    public static AudioManager Instance { get; private set; }
 
-    private void Awake() {
-        if(Instance == null)
+    private AudioSource fxSource;
+    private AudioSource musicSource;
+
+    [SerializeField] public AudioMixer audioMixer;
+
+    private void Awake()
+    {
+        if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+        }
+
+        // Inicializa las fuentes de audio
+        fxSource = gameObject.AddComponent<AudioSource>();
+        musicSource = gameObject.AddComponent<AudioSource>();
+        // Inicializamos el Mixer
+        audioMixer = Resources.Load<AudioMixer>("AudioMaster");
+        
+        // Asignamos canales al audioMixer
+         if (audioMixer != null)
+        {
+            // Asigna el canal "Fx" al fxSource
+            fxSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Fx")[0];
+            
+            // Asigna el canal "Music" al musicSource
+            musicSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Music")[0];
+        }
+        else
+        {
+            Debug.LogWarning("El mixer de audio no se pudo cargar.");
         }
     }
-    void Start()
+
+    // Método para reproducir efectos de sonido
+    public void PlayFX(string clipName)
     {
-        sfxAudio = transform.GetChild(0).GetComponent<AudioSource>();
-        musicAudio = transform.GetChild(1).GetComponent<AudioSource>();
-        InitialPlayMusic(initialMusic);
+        string path = $"Sounds/{clipName}"; // Ruta dentro de la carpeta Resources
+        AudioClip clip = Resources.Load<AudioClip>(path); // Carga el archivo .wav
+        if (clip != null)
+        {
+            fxSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"No se encontró el archivo de audio: {path}");
+        }
     }
 
-    public void PlaySFX(AudioClip clip)
+    // Método para reproducir música
+    public void PlayMusic(string clipName, bool loop = true)
     {
-        sfxAudio.PlayOneShot(clip);
+        string path = $"Music/{clipName}"; // Ruta dentro de la carpeta Resources
+        AudioClip clip = Resources.Load<AudioClip>(path); // Carga el archivo .wav
+        if (clip != null)
+        {
+            musicSource.clip = clip;
+            musicSource.loop = loop;
+            musicSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning($"No se encontró el archivo de audio: {path}");
+        }
     }
-    public void PlayMusic(AudioClip clip)
+
+    // Método para detener la música
+    public void StopMusic()
     {
-        musicAudio.Stop();
-        musicAudio.clip = clip;
-        musicAudio.Play();
-        musicAudio.loop = true;
+        if (musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
     }
-    void InitialPlayMusic(AudioClip clip)
-    {
-        musicAudio.clip = clip;
-        musicAudio.Play();
-        musicAudio.loop = true;
-    }
+
+ 
 }
