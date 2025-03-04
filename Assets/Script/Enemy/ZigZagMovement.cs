@@ -27,6 +27,8 @@ public class ZigZagMovement : MonoBehaviour
 
     void Update()
     {
+        if (PlayerHealth.health < 1) gameObject.SetActive(false);
+
         if (!movingToMotherShip)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -37,7 +39,7 @@ public class ZigZagMovement : MonoBehaviour
             }
         }
 
-        if (transform.position.x <= 35 && motherShip)
+        if (transform.position.x < -35 && motherShip)
         {
             movingToMotherShip = true;
             targetPosition = motherShip.position;

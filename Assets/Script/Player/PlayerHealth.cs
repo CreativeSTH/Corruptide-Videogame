@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private int health = 9;
+    public static int health = 9;
 
 
     private void OnTriggerEnter(Collider other)
@@ -14,14 +14,16 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Missile"))
         {
             TakeDamage(5);
+            Destroy(other.gameObject);
         }
         else if (other.CompareTag("Bullet"))
         {
             TakeDamage(1);
+            Destroy(other.gameObject);
         }
 
         Debug.Log($"Player Health after collision: {health}");
-        Destroy(other.gameObject);
+        
     }
 
     private void TakeDamage(int damage)

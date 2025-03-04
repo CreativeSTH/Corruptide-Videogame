@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
         {
             TakeDamage(1);
             Destroy(other.gameObject); // Destroy the bullet upon impact
-        } else if (other.CompareTag("Missile"))
+        } else if (other.CompareTag("MissilePlayer"))
         {
             TakeDamage(5);
             Destroy(other.gameObject);
