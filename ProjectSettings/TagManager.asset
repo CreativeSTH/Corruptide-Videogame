@@ -16,6 +16,7 @@ TagManager:
   - Su57
   - A10
   - AH64
+  - FinalBoss
   layers:
   - Default
   - TransparentFX
