@@ -5,6 +5,13 @@ labels:
 - Shooter
 - Jet
 - Sci-fi
+AssetOrigin:
+  serializedVersion: 1
+  productId: 1807
+  packageName: Space Ship Shooter
+  packageVersion: 1.0
+  assetPath: Assets/Space Shooter/Space_Shooter.fbx
+  uploadId: 27438
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -116,10 +123,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 1807
-  packageName: Space Ship Shooter
-  packageVersion: 1.0
-  assetPath: Assets/Space Shooter/Space_Shooter.fbx
-  uploadId: 27438
