@@ -21,7 +21,7 @@ public class MoveAndShootAtPlayer : MonoBehaviour
 
     void Update()
     {
-        if (PlayerHealth.health < 1) gameObject.SetActive(false);
+        if (PlayerHealth.health < 1) this.enabled = false;
 
         if (player)
         {

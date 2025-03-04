@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - Missile
   - MissilePlayer
+  - BulletPlayer
   layers:
   - Default
   - TransparentFX

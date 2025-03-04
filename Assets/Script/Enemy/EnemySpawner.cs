@@ -6,9 +6,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnInterval = 2f; // Time between spawns
     private float spawnX = 75f;
 
-    void Start()
+    void OnEnable()
     {
         InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke(nameof(SpawnEnemy));
     }
 
     private void SpawnEnemy()

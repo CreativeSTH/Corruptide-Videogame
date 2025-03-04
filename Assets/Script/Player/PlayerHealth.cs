@@ -9,7 +9,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collision detected with {other.gameObject.name}");
 
         if (other.CompareTag("Missile"))
         {
@@ -22,18 +21,15 @@ public class PlayerHealth : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        Debug.Log($"Player Health after collision: {health}");
         
     }
 
     private void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log($"Taking damage: {damage}, Remaining Player Health: {health}");
 
         if (health <= 0)
         {
-            Debug.Log("Player Health reached 0. Reloading scene...");
             StartCoroutine(ReloadScene());
         }
     }
@@ -41,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator ReloadScene()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        health = 9;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

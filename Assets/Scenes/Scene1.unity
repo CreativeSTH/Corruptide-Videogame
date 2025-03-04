@@ -216,15 +216,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405376, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.14767
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: 405376, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.185503
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 405376, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4800863
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 405376, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
       propertyPath: m_LocalRotation.w
@@ -619,7 +619,7 @@ Transform:
   m_GameObject: {fileID: 609969003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 22
-  leftProjectilePrefab: {fileID: 3635893148395883150, guid: 1b5be2483ea537e4aa50ece786bededb, type: 3}
+  leftProjectilePrefab: {fileID: 3635893148395883150, guid: 61f2bb0f92503794e8beaaf91652c58d, type: 3}
   rightProjectilePrefab: {fileID: 8938247464453456155, guid: d70105fd29cd6c24b90446b0e3eb1aaa, type: 3}
   firePoint: {fileID: 609969004}
 --- !u!54 &1057606799
