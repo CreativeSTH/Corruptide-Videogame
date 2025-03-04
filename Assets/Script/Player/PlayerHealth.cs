@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int health = 8;
+    private int health = 9;
 
 
     private void OnTriggerEnter(Collider other)

@@ -23,7 +23,7 @@ public class MoveAndShootAtPlayer : MonoBehaviour
     {
         if (player)
         {
-            if (transform.position.x > -35)
+            if (transform.position.x < -35)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
                 Vector3 direction = (motherShip.position - transform.position).normalized;
