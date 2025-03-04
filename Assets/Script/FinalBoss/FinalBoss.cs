@@ -10,7 +10,7 @@ public class FinalBoss : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float jumpHeight = 12f;
     [SerializeField] private float actionInterval = 2f;
     [SerializeField] private float projectileSpeed = 20;
     [SerializeField] private float missileSpeed = 12;
@@ -20,6 +20,7 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private GameObject autoShotPrefab;
     [SerializeField] private Transform firePoint;
 
+    private bool firstMove = true;
     private Transform player;
     private Animator animator;
     private bool isAttacking = false;
@@ -33,12 +34,11 @@ public class FinalBoss : MonoBehaviour
 
     private void Update()
     {
-        if (player != null)
+        if (transform.position.x < -7.3)
         {
-            Vector3 direction = player.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            MoveRight();
         }
+        else if (transform.position.x > 7.3) MoveLeft();
     }
 
     private IEnumerator BossBehaviorLoop()
@@ -55,7 +55,12 @@ public class FinalBoss : MonoBehaviour
 
     private void ChooseRandomAction()
     {
-        int action = Random.Range(0, 4);
+        int action;
+        if (firstMove)
+        {
+            action = Random.Range(0, 2);
+            firstMove = false;
+        } else action = Random.Range(0, 6);
 
         switch (action)
         {
@@ -68,8 +73,8 @@ public class FinalBoss : MonoBehaviour
             case 2:
                 Jump();
                 break;
-            case 3:
-                if (Random.Range(0, 2) == 0)
+            case int n when (n >= 3 && n <= 5):
+                if (Random.Range(0, 3) == 0)
                     StartCoroutine(ShootAuto());
                 else
                     ShootSingle();
@@ -127,9 +132,11 @@ public class FinalBoss : MonoBehaviour
         animator.SetBool("ShootSing", true);
         GameObject projectile = Instantiate(singleShotPrefab, firePoint.position, Quaternion.Euler(0, 90, 90));
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        Vector3 direction = player.position - firePoint.position;
+
         if (rb != null)
         {
-            rb.linearVelocity = Vector3.back * missileSpeed; // Moves right in a horizontal shooter
+            rb.linearVelocity = direction * missileSpeed; // Moves right in a horizontal shooter
         }
         StartCoroutine(ResetShooting("ShootSing"));
     }
@@ -139,14 +146,16 @@ public class FinalBoss : MonoBehaviour
         animator.SetBool("ShootAuto", true);
         isAttacking = true;
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 8; i++)
         {
             yield return new WaitForSeconds(0.2f);
             GameObject projectile = Instantiate(autoShotPrefab, firePoint.position, Quaternion.Euler(0, 90, 90));
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            Vector3 direction = player.position - firePoint.position;
+
             if (rb != null)
             {
-                rb.linearVelocity = Vector3.back * projectileSpeed; // Moves right in a horizontal shooter
+                rb.linearVelocity = direction * projectileSpeed; // Moves right in a horizontal shooter
             }
         }
 
