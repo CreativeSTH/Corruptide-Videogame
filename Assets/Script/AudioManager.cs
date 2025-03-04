@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
     // Método para reproducir efectos de sonido
     public void PlayFX(string clipName)
     {
-        string path = $"Sounds/{clipName}"; // Ruta dentro de la carpeta Resources
+        string path = $"Audio/Fx/{clipName}"; // Ruta dentro de la carpeta Resources
         AudioClip clip = Resources.Load<AudioClip>(path); // Carga el archivo .wav
         if (clip != null)
         {
@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     // Método para reproducir música
     public void PlayMusic(string clipName, bool loop = true)
     {
-        string path = $"Music/{clipName}"; // Ruta dentro de la carpeta Resources
+        string path = $"Audio/Music/{clipName}"; // Ruta dentro de la carpeta Resources
         AudioClip clip = Resources.Load<AudioClip>(path); // Carga el archivo .wav
         if (clip != null)
         {
