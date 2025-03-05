@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
-        SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("OptionMenu", LoadSceneMode.Additive);
+    }
+    public void CloseCredits()
+    {
+        SceneManager.UnloadSceneAsync("CreditsScene");
     }
 }

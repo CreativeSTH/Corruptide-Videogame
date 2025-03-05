@@ -9,7 +9,7 @@ public class introManagement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AudioManager.Instance.PlayMusic("intro");
+        AudioManager.Instance.PlayMusic("spaceAmbient");
     }
 
     // Método para manejar la entrada del usuario (Enter o clic)
