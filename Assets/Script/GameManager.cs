@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void LoadSceneByName(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
     // Carga la siguiente escena
     public void LoadNextScene()
     {
