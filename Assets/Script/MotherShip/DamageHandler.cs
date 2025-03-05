@@ -1,19 +1,28 @@
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class DamageHandler : MonoBehaviour
 {
     [SerializeField] private int health = 5;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private IntroController introController;
 
     private void Start()
     {
+        introController = FindAnyObjectByType<IntroController>();
+
         if (healthBar)
         {
             healthBar.maxValue = health;
-            healthBar.value = health;
+            healthBar.value = health; // Inicializamos la barra de vida
+        }
+    }
+
+    private void Update()
+    {
+        if (healthBar)
+        {
+            healthBar.value = health; // Actualiza el slider directamente
         }
     }
 
@@ -23,11 +32,8 @@ public class DamageHandler : MonoBehaviour
         {
             TakeDamage(2);
             Destroy(other.gameObject);
-        } else if (other.CompareTag("Fighter"))
-        {
-            TakeDamage(1);
-            Destroy(other.gameObject);
-        } else if (other.CompareTag("Fighter2"))
+        }
+        else if (other.CompareTag("Fighter") || other.CompareTag("Fighter2"))
         {
             TakeDamage(1);
             Destroy(other.gameObject);
@@ -37,18 +43,11 @@ public class DamageHandler : MonoBehaviour
     private void TakeDamage(int damage)
     {
         health -= damage;
-        healthBar.value = health;
+        health = Mathf.Max(health, 0); // Evita que la vida sea negativa
 
         if (health <= 0)
         {
-            StartCoroutine(ReloadScene());
+            introController.GameOver();
         }
     }
-
-    private IEnumerator ReloadScene()
-    {
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 }
-
