@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class introManagement : MonoBehaviour
+public class IntroController : MonoBehaviour
 {
     
+    public GameObject panelGameOver; 
+    public GameObject panelPause;
+    public GameObject panelGameWin;
     public Slider sliderMusic;   // Asigna el Slider de música desde el Inspector
     public Slider sliderFx;      // Asigna el Slider de FX desde el Inspector
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AudioManager.Instance.PlayMusic("intro");
+        AudioManager.Instance.PlayMusic("spaceAmbient");
     }
 
     // Método para manejar la entrada del usuario (Enter o clic)
@@ -27,7 +30,7 @@ public class introManagement : MonoBehaviour
         HandleInput();
     }
 
-     public void FxClick()
+    public void FxClick()
     {
         AudioManager.Instance.PlayFX("start");
     }
@@ -55,5 +58,12 @@ public class introManagement : MonoBehaviour
     public void OpenMenu()
     {
         GameManager.Instance.OpenOptionsMenu();
+    }
+
+    //panels
+    public void GameOver(){
+        panelGameOver.SetActive(true);
+        Time.timeScale = 0f;
+        Debug.Log("¡Has perdido!");
     }
 }

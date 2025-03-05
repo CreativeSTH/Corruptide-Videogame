@@ -9,6 +9,7 @@ public class MoveAndShootAtPlayer : MonoBehaviour
     private Transform player;
     private float nextFireTime;
     private Transform motherShip;
+    
 
     void Start()
     {
