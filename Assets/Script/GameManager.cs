@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextLvMenu(){
-         SceneManager.LoadScene("NextLv");
+        SceneManager.LoadScene("NextLv");
     }
 
     // Método para manejar la derrota
@@ -70,5 +70,16 @@ public class GameManager : MonoBehaviour
     public void OpenOptionsMenu()
     {
         SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);
+    }
+
+    //Win level 1 and restar level GameOver
+
+    public void WinLevel(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void RestartLevel(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
