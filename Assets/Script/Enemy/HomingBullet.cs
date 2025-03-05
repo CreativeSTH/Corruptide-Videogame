@@ -18,7 +18,7 @@ public class HomingBullet : MonoBehaviour
 
     void Update()
     {
-        if (player && transform.position.x > -49)
+        if (player && transform.position.x > -42.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             Vector3 direction = (player.position - transform.position).normalized;
