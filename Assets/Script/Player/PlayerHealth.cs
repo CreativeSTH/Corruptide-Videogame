@@ -32,11 +32,13 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(5);
             Destroy(other.gameObject);
+            AudioManager.Instance.PlayFX("playerDie");
         }
         else if (other.CompareTag("Bullet"))
         {
             TakeDamage(1);
             Destroy(other.gameObject);
+            AudioManager.Instance.PlayFX("playerDie");
         }
 
 

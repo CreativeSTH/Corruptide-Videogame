@@ -67,10 +67,12 @@ public class PlayerController3D : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Click Izquierdo (Proyectiles ilimitados)
         {
             ShootProjectile(leftProjectilePrefab, projectileSpeed);
+            AudioManager.Instance.PlayFX("smallAmo");
         }
         if (Input.GetMouseButtonDown(1)) // Click Derecho (Misiles limitados)
         {
             ShootMissile(rightProjectilePrefab);
+            AudioManager.Instance.PlayFX("bigAmo");
         }
     }
 

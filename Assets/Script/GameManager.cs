@@ -10,12 +10,12 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
             Debug.Log("GameManager instanciado.");
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -69,9 +69,17 @@ public class GameManager : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
-        SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
     }
 
+    public void CloseCredits()
+    {
+        SceneManager.UnloadSceneAsync("CreditsScene");
+    }
+
+    public void LoadSceneByName(string name){
+        SceneManager.LoadScene(name);
+    }
     //Win level 1 and restar level GameOver
 
     public void WinLevel(){
@@ -82,4 +90,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+
 }

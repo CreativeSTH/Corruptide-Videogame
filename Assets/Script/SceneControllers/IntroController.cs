@@ -12,7 +12,7 @@ public class IntroController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //AudioManager.Instance.PlayMusic("Menumusic");
+        AudioManager.Instance.PlayMusic("spaceAmbient");
     }
 
     // Método para manejar la entrada del usuario (Enter o clic)
@@ -20,7 +20,7 @@ public class IntroController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return)) // Enter o clic izquierdo
         {
-            //AudioManager.Instance.PlayFX("start");
+            AudioManager.Instance.PlayFX("start");
             GameManager.Instance.PressStart();
         }
     }
@@ -32,7 +32,7 @@ public class IntroController : MonoBehaviour
 
     public void FxClick()
     {
-        //AudioManager.Instance.PlayFX("start");
+        AudioManager.Instance.PlayFX("start");
     }
 
     public void SetMusicVolume(float volume)

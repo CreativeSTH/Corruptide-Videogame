@@ -35,6 +35,7 @@ public class MissileBox : MonoBehaviour
         {
             // Intentamos encontrar el script del jugador y sumarle los misiles
             PlayerController3D playerScript = other.GetComponent<PlayerController3D>();
+            AudioManager.Instance.PlayFX("powerUp");
 
             if (playerScript != null)
             {

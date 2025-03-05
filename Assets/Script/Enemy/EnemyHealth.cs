@@ -20,10 +20,13 @@ public class EnemyHealth : MonoBehaviour
         {
             TakeDamage(1);
             Destroy(other.gameObject); // Destroy the bullet upon impact
+            AudioManager.Instance.PlayFX("enemieDie");
+
         } else if (other.CompareTag("MissilePlayer"))
         {
             TakeDamage(5);
             Destroy(other.gameObject);
+            AudioManager.Instance.PlayFX("enemieDie");
         }
     }
 
