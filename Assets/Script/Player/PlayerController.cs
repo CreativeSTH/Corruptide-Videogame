@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if(shootValue){
             if (Time.time > shootRateTime)
             {
-            AudioManager.Instance.PlaySFX(audioShot);
+            AudioManager.Instance.PlayFX("audioShot");
             GameObject newMissile;
 
             newMissile = Instantiate(Missile, SpawnMissile.position, SpawnMissile.rotation );
