@@ -16,7 +16,7 @@ Material:
   - _GLOSSINESS_FROM_BASE_ALPHA
   - _SPECULAR_COLOR
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -29,7 +29,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 074fc2788c0ac46039b58055e2f5f28e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 372cdc0d1dcd0134495df96874936f4f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 074fc2788c0ac46039b58055e2f5f28e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 372cdc0d1dcd0134495df96874936f4f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -126,11 +126,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7058823, g: 0.7058823, b: 0.7058823, a: 0.03}
-    - _Color: {r: 0.7058823, g: 0.7058823, b: 0.7058823, a: 0.03}
+    - _BaseColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.03}
+    - _Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.03}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColorUI: {r: 0.8602941, g: 0.8602941, b: 0.8602941, a: 1}
-    - _SpecColor: {r: 0.83823526, g: 0.83823526, b: 0.83823526, a: 1}
+    - _SpecColor: {r: 0, g: 0.18867922, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &8716986301771412220
